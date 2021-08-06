@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Product</title>
+</head>
+<body>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input type="text" name="name" value="{{product.name}}" ><br><br>
+        <textarea cols="30" rows="10" name="content" >{{product.content}}</textarea><br><br>
+        <input type="file" name="image" value="{{product.image}}"><br><br>
+        <input type="number" name="stock" value="{{product.stock}}"><br><br>
+        <select name="category_id">
+            <option value="{{category.id}}">Choose category</option>
+            {% for category in categories %}
+                {% if products.category == category %}
+                    <option value="{{category.id}}" selected>{{category.name}}</option>
+                {% else %}
+                    <option value="{{category.id}}" >{{category.name}}</option>
+                {% endif %}
+            {% endfor%}
+        </select><br><br>
+        <input type="number" name="price" value="{{product.price}}"><br><br>
+        <input type="number" name="rating" value="{{product.rating}}"><br><br>
+        <input type="submit" value="Save">
+    </form>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Shop</title>
+    <style>
+        table, tr, td{
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <a href="{% url 'create-list' %}">Add Product</a>
+    <table>
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Name</td>
+                <td>Content</td>
+                <td>Image</td>
+                <td>Stock</td>
+                <td>Category</td>
+                <td>Price</td>
+                <td>Rating</td>
+                <td>Created_at</td>
+                <td>Updated_at</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+                <tr>
+                    <td>{{product.id}}</td>
+                    <td>{{product.name}}</td>
+                    <td>{{product.content|truncatechars:30}}</td>
+                    <td>{{product.image|truncatechars:30}}</td>
+                    <td>{{product.stock}}</td>
+                    <td>{{product.category}}</td>
+                    <td>{{product.price}}</td>
+                    <td>{{product.rating}}</td>
+                    <td>{{product.created_at}}</td>
+                    <td>{{product.updated_at}}</td>
+                    <td>
+                        <a href="{% url 'update-list' pk=product.id %}">Update</a>
+                    </td>
+                    <td>
+                        <a href="{% url 'delete-list' pk=product.id %}">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
